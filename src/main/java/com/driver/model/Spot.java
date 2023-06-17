@@ -9,14 +9,29 @@ public class Spot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;
-
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private SpotType spotType;
-
     private int pricePerHour;
+    Boolean occupied=false;
 
-    private Boolean occupied;
+    @ManyToOne
+    @JoinColumn
+    ParkingLot parkingLot;
 
+    @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
+    List<Reservation> reservationList=new ArrayList<>();
+
+    public Spot() {
+    }
+
+    public Spot(int id, SpotType spotType, int pricePerHour, Boolean occupied, ParkingLot parkingLot, List<Reservation> reservationList) {
+        this.id = id;
+        this.spotType = spotType;
+        this.pricePerHour = pricePerHour;
+        this.occupied = occupied;
+        this.parkingLot = parkingLot;
+        this.reservationList = reservationList;
+    }
 
     public int getId() {
         return id;
@@ -50,10 +65,6 @@ public class Spot {
         this.occupied = occupied;
     }
 
-    @ManyToOne
-    @JoinColumn
-    ParkingLot parkingLot;
-
     public ParkingLot getParkingLot() {
         return parkingLot;
     }
@@ -69,7 +80,4 @@ public class Spot {
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
     }
-
-    @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
-    List<Reservation> reservationList = new ArrayList<>();
 }

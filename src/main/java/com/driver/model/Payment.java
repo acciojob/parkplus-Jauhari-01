@@ -9,23 +9,30 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;
-    private Boolean paymentCompleted;
+
+    private boolean paymentCompleted;
+    @Enumerated(value = EnumType.STRING)
     private PaymentMode paymentMode;
-    private Reservation reservation;
 
-    public int getId() {
-        return id;
+    @OneToOne
+    @JoinColumn
+    Reservation reservation;
+
+    public Payment(boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
+        this.paymentCompleted = paymentCompleted;
+        this.paymentMode = paymentMode;
+        this.reservation = reservation;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Payment() {
+
     }
 
-    public Boolean getPaymentCompleted() {
+    public boolean isPaymentCompleted() {
         return paymentCompleted;
     }
 
-    public void setPaymentCompleted(Boolean paymentCompleted) {
+    public void setPaymentCompleted(boolean paymentCompleted) {
         this.paymentCompleted = paymentCompleted;
     }
 
@@ -44,15 +51,4 @@ public class Payment {
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }
-
-    public List<Reservation> getReservationList() {
-        return reservationList;
-    }
-
-    public void setReservationList(List<Reservation> reservationList) {
-        this.reservationList = reservationList;
-    }
-
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<Reservation> reservationList = new ArrayList<>();
 }
