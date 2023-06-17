@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 public class Spot {
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private int id;
 
     @Enumerated(EnumType.STRING)

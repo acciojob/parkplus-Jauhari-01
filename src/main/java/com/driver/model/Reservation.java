@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private int id;
 
     private int numberOfHours;

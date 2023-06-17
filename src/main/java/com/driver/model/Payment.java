@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 public class Payment {
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private int id;
     private Boolean paymentCompleted;
     private PaymentMode paymentMode;

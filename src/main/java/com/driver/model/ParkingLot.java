@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 public class ParkingLot {
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     private int id;
     private String name;
     private String address;
