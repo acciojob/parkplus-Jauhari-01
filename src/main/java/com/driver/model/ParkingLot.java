@@ -49,6 +49,14 @@ public class ParkingLot {
         this.address = address;
     }
 
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
+
     @OneToMany(mappedBy = "parkingLot",cascade = CascadeType.ALL)
     List<Spot> spotList = new ArrayList<>();
 }

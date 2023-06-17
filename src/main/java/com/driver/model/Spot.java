@@ -53,6 +53,22 @@ public class Spot {
     @JoinColumn
     ParkingLot parkingLot;
 
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
+
     @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
     List<Reservation> reservationList = new ArrayList<>();
 }
